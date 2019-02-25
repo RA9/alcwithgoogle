@@ -1,0 +1,62 @@
+/* app css stylesheet */
+
+h1 {
+  margin-bottom: 40px;
+}
+
+label {
+  color: #333;
+}
+
+.btn-send {
+  font-weight: 300;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  margin-bottom: 20px;
+}
+
+.help-block.with-errors {
+  color: #ff5050;
+  margin-top: 5px;
+}
+
+.bg-blue {
+  background-color: #3359df;
+  color: #fff;
+}
+
+/*======================================
+//--//-->   CARD
+======================================*/
+
+.card {
+  margin-bottom: 8px;
+}
+.flexcss{
+display:flex;
+flex-direction: row
+}
+.card-body{
+padding:5px;
+}
+/*======================================
+//--//-->   FOOTER
+======================================*/
+footer {
+background-color: #000;
+text-align: center;
+color: #fff;
+padding-bottom: 4rem;
+}
+
+footer .copyright {
+margin-bottom: .3rem;
+}
+
+footer .credits {
+margin-bottom: 0;
+}
+
+footer .credits a {
+color: #fff;
+}

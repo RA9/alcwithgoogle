@@ -1,0 +1,64 @@
+{
+  "_from": "angular-loader@1.7.7",
+  "_id": "angular-loader@1.7.7",
+  "_inBundle": false,
+  "_integrity": "sha512-kDeTE1BVlj2aTtiIHdd+Ym5ifILJ34potlju8e4qRVSxiiSar4zVtpkrgunoFZspZsRawbKLpMR8JY5awlI55A==",
+  "_location": "/angular-loader",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "version",
+    "registry": true,
+    "raw": "angular-loader@1.7.7",
+    "name": "angular-loader",
+    "escapedName": "angular-loader",
+    "rawSpec": "1.7.7",
+    "saveSpec": null,
+    "fetchSpec": "1.7.7"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/angular-loader/-/angular-loader-1.7.7.tgz",
+  "_shasum": "c99b6aa29090c160c990800319633b968b98c511",
+  "_spec": "angular-loader@1.7.7",
+  "_where": "/home/francis/Desktop/Js/Angularjs apps/alcwithgoogle",
+  "author": {
+    "name": "Angular Core Team",
+    "email": "angular-core+npm@google.com"
+  },
+  "bugs": {
+    "url": "https://github.com/angular/angular.js/issues"
+  },
+  "bundleDependencies": false,
+  "deprecated": false,
+  "description": "AngularJS module for asynchronously loading modules",
+  "homepage": "http://angularjs.org",
+  "jspm": {
+    "shim": {
+      "angular-loader": {
+        "deps": [
+          "angular"
+        ]
+      }
+    }
+  },
+  "keywords": [
+    "angular",
+    "framework",
+    "browser",
+    "loader",
+    "client-side"
+  ],
+  "license": "MIT",
+  "main": "angular-loader.js",
+  "name": "angular-loader",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/angular/angular.js.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "version": "1.7.7"
+}

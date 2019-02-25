@@ -1,0 +1,106 @@
+<header class="jumbotron">
+    <h2 class="text-center">Meet Our Developers from ALCwithGoogle 3.1</h2>
+    <p class="lead">
+        Below are the lists of the particpants or recipents of the Google Africa Reskilling
+        Scholarship in partnership with Andela Learning Community and Pluralsight
+    </p>
+    <p>
+        If you participated in the program feel free to add your credential or send me it using the contact page 
+    </p>
+    <div class="text-center">
+            <a href="#" class="btn btn-success">Learn more!!</a>
+            <a href="#" class="btn btn-primary">Login/Signup</a>
+    </div>
+</header>
+
+<div class="row">
+<div class="col-md-4" ng-repeat="(id,user) in users">
+        <div class="card text-center">
+            <br>
+            <div class=" text-center">
+                    <img ng-src="{{user.img}}" alt="{{user.name}} | filter: filter.search" class=" img-fluid rounded-circle" width="150">
+            </div>
+           
+            <div class="card-body" >
+                <h4 class="card-title">{{user.name}}</h4>
+                <p class="card-text ">{{user.description}}</p>
+                <a href="#" class="btn btn-info">Learn more</a> 
+                <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" ng-click="editUser(id)">Edit</button>
+                <br> <br>
+                <div class="card-footer">
+                    <span>
+                        <a href="{{user.github.url}}" class="btn btn-primary btn-sm"><i class="{{user.github.icon}}"></i>{{user.github.title}}</a>
+                        <a href="{{user.facebook.url}}" class="btn btn-primary btn-sm"><i class="{{user.facebook.icon}}"></i>{{user.facebook.title}}</a><br><br>
+                        <a href="{{user.twitter.url}}" class="btn btn-primary btn-sm"><i class="{{user.twitter.icon}}"></i>{{user.twitter.title}}</a> 
+                        <a href="{{user.linkedin.url}}" class="btn btn-primary btn-sm"><i class="{{user.linkedin.icon}}"></i>{{user.linkedin.title}}</a>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div> <!-- col ending --> 
+</div> <!-- row ending -->
+
+
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" ng-repeat="user in users">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Edit User Details</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+            <div class="form-row">
+                    <div class="form-group col-md-6">
+                            <label for="">Name:</label>
+                            <input ng-model="editUserData.name" type="text" class="form-control" placeholder="Enter your name">                                  
+                    </div>
+                    <div class="form-group col-md-6">
+                            <label for="">Age:</label>
+                            <input ng-model="editUserData.age" type="number" class="form-control" placeholder="How old are you?">                
+                    </div>
+            </div>
+            <div class="form-group">
+                    <label for="">Description:</label>
+                    <textarea ng-model="editUserData.description" name="" id="" class="form-control" placeholder="Enter your Message"></textarea>        
+            </div>  
+            <div class="form-group">
+                    <label for="">Occupation:</label>
+                    <input ng-model="editUserData.occupation" type="text" class="form-control" placeholder="Enter your fullname">
+            </div>
+            <div class="form-group">
+                            <label for="">Image:</label>
+                            <input ng-model="editUserData.img" type="text"  class="form-control" placeholder="Enter your email url"> 
+            </div>
+            <div class="form-row">
+                    <div class="form-group col-md-6">
+                            <label for=""><i class="fa fa-github"></i> Github</label>
+                            <input ng-model="editUserData.github.url" type="text" class="form-control" placeholder="Enter your Github account">
+                    </div>        
+                    <div class="form-group col-md-6">
+                            <label for=""><i class="fa fa-linkedin"></i> LinkedIn:</label>
+                            <input ng-model="editUserData.linkedin.url" type="text" class="form-control" placeholder="Enter your Linkedin account">
+                    </div>
+            </div>
+            <div class="form-row">
+                    <div class="form-group col-md-6">
+                            <label for=""><i class="fa fa-twitter"></i> Twitter:</label>
+                            <input ng-model="editUserData.twitter.url" type="text" class="form-control" placeholder="Enter your Twitter address">
+                    </div>  
+                    <div class="form-group col-md-6">
+                            <label for=""><i class="fa fa-facebook"></i> Facebook:</label>
+                            <input ng-model="editUserData.facebook.url" type="text" class="form-control" placeholder="Enter your Facebook address">
+                    </div> 
+            </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" ng-click="saveUserData(editUserData.$id)">Submit</button>
+      </div>
+    </div>
+  </div>
+</div>
