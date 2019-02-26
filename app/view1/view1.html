@@ -8,13 +8,13 @@
         If you participated in the program feel free to add your credential or send me it using the contact page 
     </p>
     <div class="text-center">
-            <a href="#" class="btn btn-success">Learn more!!</a>
+            <button type="submit" data-toggle="modal" data-target="#newModal" class="btn btn-success">Add Yourself</button>
             <a href="#" class="btn btn-primary">Login/Signup</a>
     </div>
 </header>
 
 <div class="row">
-<div class="col-md-4" ng-repeat="(id,user) in users">
+<div class="col-md-4" ng-repeat="(id,user) in users | filter: search">
         <div class="card text-center">
             <br>
             <div class=" text-center">
@@ -24,7 +24,7 @@
             <div class="card-body" >
                 <h4 class="card-title">{{user.name}}</h4>
                 <p class="card-text ">{{user.description}}</p>
-                <a href="#" class="btn btn-info">Learn more</a> 
+                <a href="/" class="btn btn-info">Learn more</a> 
                 <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" ng-click="editUser(id)">Edit</button>
                 <br> <br>
                 <div class="card-footer">
@@ -104,3 +104,70 @@
     </div>
   </div>
 </div>
+
+
+ <!-- Add User Modal -->
+
+ <div class="modal fade" id="newModal" tabindex="-1" role="dialog" aria-labelledby="newModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="newModalLabel">Create New User</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                        <div class="form-row">
+                                <div class="form-group col-md-6">
+                                        <label for="">Name:</label>
+                                        <input ng-model="name" type="text" class="form-control" placeholder="Enter your fullname">                                  
+                                </div>
+                                <div class="form-group col-md-6">
+                                        <label for="">Age:</label>
+                                        <input ng-model="age" type="number" class="form-control" placeholder="How old are you?">                
+                                </div>
+                        </div>
+                        <div class="form-group">
+                                <label for="">Description:</label>
+                                <textarea ng-model="description" name="" id="" class="form-control" placeholder="Enter your Message"></textarea>        
+                        </div>  
+                        <div class="form-group">
+                                <label for="">Occupation:</label>
+                                <input ng-model="occupation" type="text" class="form-control" placeholder="Enter your fullname">
+                        </div>
+                        <div class="form-group">
+                                        <label for="">Image:</label>
+                                        <input ng-model="img" type="text"  class="form-control" placeholder="Enter your email url"> 
+                        </div>
+                        <div class="form-row">
+                                <div class="form-group col-md-6">
+                                        <label for=""><i class="fa fa-github"></i> Github</label>
+                                        <input ng-model="github" type="text" class="form-control" placeholder="Enter your Github account">
+                                </div>        
+                                <div class="form-group col-md-6">
+                                        <label for=""><i class="fa fa-linkedin"></i> LinkedIn:</label>
+                                        <input ng-model="linkedin" type="text" class="form-control" placeholder="Enter your Linkedin account">
+                                </div>
+                        </div>
+                        <div class="form-row">
+                                <div class="form-group col-md-6">
+                                        <label for=""><i class="fa fa-twitter"></i> Twitter:</label>
+                                        <input ng-model="twitter" type="text" class="form-control" placeholder="Enter your Twitter address">
+                                </div>  
+                                <div class="form-group col-md-6">
+                                        <label for=""><i class="fa fa-facebook"></i> Facebook:</label>
+                                        <input ng-model="facebook" type="text" class="form-control" placeholder="Enter your Facebook address">
+                                </div> 
+                        </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button data-ng-click="addUser()" class="btn btn-primary" type="submit">Create</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      
