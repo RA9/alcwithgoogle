@@ -14,11 +14,11 @@
 </header>
 
 <div class="row">
-<div class="col-md-4" ng-repeat="(id,user) in users | filter: search">
+<div class="col-md-4" ng-repeat="(id,user) in users">
         <div class="card text-center">
             <br>
             <div class=" text-center">
-                    <img ng-src="{{user.img}}" alt="{{user.name}} | filter: filter.search" class=" img-fluid rounded-circle" width="150">
+                    <img ng-src="{{user.img}}" alt="{{user.name}}" class=" img-fluid rounded-circle" width="150">
             </div>
            
             <div class="card-body" >
