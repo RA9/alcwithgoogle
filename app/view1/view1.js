@@ -11,7 +11,14 @@ angular.module('myApp.view1', ['ngRoute'])
 
 
 
-.controller('ViewCtrl', ['$scope','Auth','$firebaseArray','$firebaseObject',function($scope,Auth,$firebaseArray,$firebaseObject) {
+.controller('ViewCtrl', ['$scope','Auth','$firebaseArray','$firebaseObject','CommonProp',function($scope,Auth,$firebaseArray,$firebaseObject,CommonProp) {
+    
+  $scope.username = CommonProp.getUser();
+
+    if($scope.username){
+      $location.path('/welcome');
+  }
+
   const ref = firebase.database().ref();
     // download the data into a local object
     const syncObject = $firebaseObject(ref.child("users"));
