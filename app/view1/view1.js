@@ -9,6 +9,8 @@ angular.module('myApp.view1', ['ngRoute'])
   });
 }])
 
+
+
 .controller('ViewCtrl', ['$scope','$firebaseArray','$firebaseObject',function($scope,$firebaseArray,$firebaseObject) {
   const ref = firebase.database().ref();
     // download the data into a local object
@@ -94,4 +96,9 @@ angular.module('myApp.view1', ['ngRoute'])
         }
       });
     };
+
+
+    // ======= User Authentication =======
+
+    
 }]);
