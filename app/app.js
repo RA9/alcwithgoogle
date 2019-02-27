@@ -6,7 +6,6 @@ angular.module('myApp', [
   'ngRoute',
   'firebase',
   'myApp.view1',
-  'myApp.user',
   'myApp.about',
   'myApp.contact',
   'myApp.version'
