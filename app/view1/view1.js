@@ -6,25 +6,17 @@ angular.module('myApp.view1', ['ngRoute'])
   $routeProvider.when('/', {
     templateUrl: 'view1/view1.html',
     controller: 'ViewCtrl',
-    resolve: {
-      // controller will not be loaded until $waitForSignIn resolves
-      // Auth refers to our $firebaseAuth wrapper in the factory below
-      "currentAuth": ["Auth", function(Auth) {
-        // $waitForSignIn returns a promise so the resolve waits for it to complete
-        return Auth.$waitForSignIn();
-      }]
-    }
   });
 }])
 
 
 
-.controller('ViewCtrl', ['$scope','Auth','$firebaseArray','$firebaseObject','CommonProp','currentAuth',function($scope,Auth,$firebaseArray,$firebaseObject,CommonProp,currentAuth) {
+.controller('ViewCtrl', ['$scope','Auth','$firebaseArray','$firebaseObject','CommonProp','$location',function($scope,Auth,$firebaseArray,$firebaseObject,CommonProp,$location) {
     
   $scope.username = CommonProp.getUser();
 
     if($scope.username){
-      $location.path('/welcome');
+      $location.path('/');
   }
 
   const ref = firebase.database().ref();
@@ -76,42 +68,7 @@ angular.module('myApp.view1', ['ngRoute'])
       })
     }
 
-    // ========= Adding User ============= //
-
-    $scope.users = $firebaseArray(ref.child("users"));
-    // add new items to the array
-    // the message is automatically added to our Firebase database!
-    $scope.addUser = function() {
-      console.log("Adding......")
-      $scope.users.$add({
-        name: $scope.name,
-        img: $scope.img,
-        description: $scope.description,
-        age: $scope.age,
-        occupation: $scope.occupation,
-        github: {
-          icon: "fa fa-github",
-          title: "Github",
-          url: $scope.github
-        },
-        linkedin: {
-          icon: "fa fa-linkedin",
-          title: "LinkedIn",
-          url: $scope.linkedin
-        },
-        twitter: {
-          icon: "fa fa-twitter",
-          title: "Twitter",
-          url: $scope.twitter
-        },
-        facebook: {
-          icon: "fa fa-facebook",
-          title: "Facebook",
-          url: $scope.facebook
-        }
-      });
-    };
-
+   
 
     // ======= User Authentication =======
     $scope.createUser = function() {
@@ -131,9 +88,8 @@ angular.module('myApp.view1', ['ngRoute'])
     $scope.signIn = function(){
       var username = $scope.user.email;
       var password = $scope.user.password;
-      var auth = $firebaseAuth();
   
-      auth.$signInWithEmailAndPassword(username, password).then(function(){
+      Auth.$signInWithEmailAndPassword(username, password).then(function(){
         console.log("User Login Successful");
         CommonProp.setUser($scope.user.email);
         $location.path('/');

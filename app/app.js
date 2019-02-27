@@ -7,8 +7,9 @@
 angular.module('myApp', [
   'ngRoute',
   'firebase',
-  'myApp.view1',
-  'myApp.about',
+	'myApp.view1',
+	'myApp.profile',
+	'myApp.about',
   'myApp.contact',
   'myApp.version'
 ])
