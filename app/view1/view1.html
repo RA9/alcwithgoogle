@@ -8,8 +8,8 @@
         If you participated in the program feel free to add your credential or send me it using the contact page 
     </p>
     <div class="text-center">
-            <button type="submit" data-toggle="modal" data-target="#newModal" class="btn btn-success">Add Yourself</button>
-            <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#myModal" >Login/Signup</button>
+            <button type="submit" class="btn btn-success" data-toggle="modal" data-target="#signUpModal">Register</button>
+            <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#myModal" >Signin</button>
     </div>
 </header>
 
@@ -191,21 +191,57 @@
                       <form>
                               <div class="form-group">
                                       <label>Email</label>
-                                      <input type="text" class="form-control" placeholder="Enter your email">
+                                      <input type="text" ng-model="user.email" class="form-control" placeholder="Enter your email">
                               </div>
                               <div class="form-group">
                                         <label>Password</label>
-                                        <input type="password" class="form-control" placeholder="Enter your password">
+                                        <input type="password" ng-model="user.password" class="form-control" placeholder="Enter your password">
                                 </div>
                       </form>
                     </div>
-              
                     <!-- Modal footer -->
                     <div class="modal-footer">
                       <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                      <button type="button" class="btn btn-info" data-dismiss="modal">Submit</button>
+                      <button type="button" class="btn btn-info" data-dismiss="modal" ng-click="login(user)">Submit</button>
                     </div>
               
                   </div>
                 </div>
               </div>
+
+
+
+              <!-- The Modal -->
+              <div class="modal" id="signUpModal">
+                        <div class="modal-dialog">
+                          <div class="modal-content">
+                      
+                            <!-- Modal Header -->
+                            <div class="modal-header">
+                              <h4 class="modal-title">Register your account</h4>
+                              <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            </div>
+                      
+                            <!-- Modal body -->
+                            <div class="modal-body">
+                              <form>
+                                      <div class="form-group">
+                                              <label>Email</label>
+                                              <input type="text" ng-model="email" class="form-control" placeholder="Enter your email">
+                                      </div>
+                                      <div class="form-group">
+                                                <label>Password</label>
+                                                <input type="password" ng-model="password" class="form-control" placeholder="Enter your password">
+                                        </div>
+                              </form>
+                            </div>
+                      
+                            <!-- Modal footer -->
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                              <button type="button" class="btn btn-info" data-dismiss="modal" ng-click="createUser()">Signup</button>
+                            </div>
+                      
+                          </div>
+                        </div>
+                      </div>

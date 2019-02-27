@@ -11,7 +11,7 @@ angular.module('myApp.view1', ['ngRoute'])
 
 
 
-.controller('ViewCtrl', ['$scope','$firebaseArray','$firebaseObject',function($scope,$firebaseArray,$firebaseObject) {
+.controller('ViewCtrl', ['$scope','Auth','$firebaseArray','$firebaseObject',function($scope,Auth,$firebaseArray,$firebaseObject) {
   const ref = firebase.database().ref();
     // download the data into a local object
     const syncObject = $firebaseObject(ref.child("users"));
@@ -99,6 +99,30 @@ angular.module('myApp.view1', ['ngRoute'])
 
 
     // ======= User Authentication =======
+    $scope.createUser = function() {
+      $scope.message = null;
+      $scope.error = null;
+
+      // Create a new user
+      Auth.$createUserWithEmailAndPassword($scope.email, $scope.password)
+        .then(function(firebaseUser) {
+          $scope.message = "User created with uid: " + firebaseUser.uid;
+        }).catch(function(error) {
+          $scope.error = error;
+        });
+    };
+
+    $scope.deleteUser = function() {
+      $scope.message = null;
+      $scope.error = null;
+
+      // Delete the currently signed-in user
+      Auth.$deleteUser().then(function() {
+        $scope.message = "User deleted";
+      }).catch(function(error) {
+        $scope.error = error;
+      });
+    };
 
     
 }]);
