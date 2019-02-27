@@ -114,10 +114,26 @@ angular.module('myApp.view1', ['ngRoute'])
       Auth.$createUserWithEmailAndPassword($scope.email, $scope.password)
         .then(function(firebaseUser) {
           $scope.message = "User created with uid: " + firebaseUser.uid;
+          $location.path('/');
         }).catch(function(error) {
           $scope.error = error;
         });
     };
+
+    $scope.signIn = function(){
+      var username = $scope.user.email;
+      var password = $scope.user.password;
+      var auth = $firebaseAuth();
+  
+      auth.$signInWithEmailAndPassword(username, password).then(function(){
+        console.log("User Login Successful");
+        CommonProp.setUser($scope.user.email);
+        $location.path('/');
+      }).catch(function(error){
+        $scope.errMsg = true;
+        $scope.errorMessage = error.message;
+      });
+  }
 
     $scope.deleteUser = function() {
       $scope.message = null;
