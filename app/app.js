@@ -1,6 +1,8 @@
 'use strict';
 
 
+
+
 // Declare app level module which depends on views, and core components
 angular.module('myApp', [
   'ngRoute',
@@ -8,9 +10,18 @@ angular.module('myApp', [
   'myApp.view1',
   'myApp.about',
   'myApp.contact',
-  'myApp.dashboard',
   'myApp.version'
 ])
+
+.run(["$rootScope", "$location", function($rootScope, $location) {
+  $rootScope.$on("$routeChangeError", function(event, next, previous, error) {
+    // We can catch the error thrown when the $requireSignIn promise is rejected
+    // and redirect the user back to the home page
+    if (error === "AUTH_REQUIRED") {
+      $location.path("/");
+    }
+  });
+}])
 
 .factory("Auth", ["$firebaseAuth",
 function($firebaseAuth) {
@@ -18,7 +29,7 @@ function($firebaseAuth) {
 }
 ])
 
-service('CommonProp', ['$location', '$firebaseAuth', function($location, $firebaseAuth){
+.service('CommonProp', ['$location', '$firebaseAuth', function($location, $firebaseAuth){
 	var user = "";
 	var auth = $firebaseAuth();
 

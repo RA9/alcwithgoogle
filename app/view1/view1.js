@@ -5,13 +5,21 @@ angular.module('myApp.view1', ['ngRoute'])
 .config(['$routeProvider', function($routeProvider) {
   $routeProvider.when('/', {
     templateUrl: 'view1/view1.html',
-    controller: 'ViewCtrl'
+    controller: 'ViewCtrl',
+    resolve: {
+      // controller will not be loaded until $waitForSignIn resolves
+      // Auth refers to our $firebaseAuth wrapper in the factory below
+      "currentAuth": ["Auth", function(Auth) {
+        // $waitForSignIn returns a promise so the resolve waits for it to complete
+        return Auth.$waitForSignIn();
+      }]
+    }
   });
 }])
 
 
 
-.controller('ViewCtrl', ['$scope','Auth','$firebaseArray','$firebaseObject','CommonProp',function($scope,Auth,$firebaseArray,$firebaseObject,CommonProp) {
+.controller('ViewCtrl', ['$scope','Auth','$firebaseArray','$firebaseObject','CommonProp','currentAuth',function($scope,Auth,$firebaseArray,$firebaseObject,CommonProp,currentAuth) {
     
   $scope.username = CommonProp.getUser();
 
