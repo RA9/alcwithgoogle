@@ -13,7 +13,7 @@
 </header>
 
 <div class="row">
-<div class="col-md-4" ng-repeat="(id,user) in users">
+<div class="col-md-4" ng-repeat="(id,user) in profile">
         <div class="card text-center">
            <div></div>
             <div class=" text-center">
@@ -24,7 +24,7 @@
                 <h4 class="card-title">{{user.name}}</h4>
                 <p class="card-text ">{{user.description}}</p>
                 <a href="/" class="btn btn-info">Learn more</a> 
-                <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" ng-click="editUser(id)">Edit</button>
+                <button type="submit" class="btn btn-primary" ng-show="isChecked" data-toggle="modal" data-target="#exampleModal" ng-click="editUser(id)">Edit</button>
                 <br> <br>
                 <div class="card-footer">
                     <span>
@@ -41,7 +41,7 @@
 
 
 
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" ng-repeat="user in users">
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" ng-repeat="user in profile">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">

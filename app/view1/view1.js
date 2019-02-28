@@ -21,20 +21,22 @@ angular.module('myApp.view1', ['ngRoute'])
 
   const ref = firebase.database().ref();
     // download the data into a local object
-    const syncObject = $firebaseObject(ref.child("users"));
+    const syncObject = $firebaseObject(ref.child("users").child("profile"));
     console.log(syncObject)
     // synchronize the object with a three-way data binding
-    syncObject.$bindTo($scope, "users");
+    syncObject.$bindTo($scope, "profile");
 
 
     $scope.editUser = function(id) {
-     const userID = ref.child("users/" + id)
+      if($scope.username) {
+        const userID = ref.child("users").child("profile/" + id)
       $scope.editUserData = $firebaseObject(userID)
+      }
       console.log($scope.editUserData)
     }
 
     $scope.saveUserData = function(id) {
-      var userID = ref.child("users/" + id)
+      var userID = ref.child("users").child("profile/" + id)
       userID.update({
         name: $scope.editUserData.name,
         img: $scope.editUserData.img,
@@ -110,6 +112,8 @@ angular.module('myApp.view1', ['ngRoute'])
         $scope.error = error;
       });
     };
+
+    $scope.isChecked = $scope.username;
 
     
 }]);

@@ -19,7 +19,7 @@ angular.module('myApp.profile', ['ngRoute'])
 
    // ========= Adding User ============= //
 
-   $scope.users = $firebaseArray(ref.child("users"));
+   $scope.users = $firebaseArray(ref.child("users").child("profile"));
    // add new items to the array
    // the message is automatically added to our Firebase database!
    $scope.addUser = function() {
