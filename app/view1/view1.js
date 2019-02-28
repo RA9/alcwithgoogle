@@ -101,6 +101,8 @@ angular.module('myApp.view1', ['ngRoute'])
       });
   }
 
+  $scope.signOut = CommonProp.logoutUser();
+
     $scope.deleteUser = function() {
       $scope.message = null;
       $scope.error = null;
