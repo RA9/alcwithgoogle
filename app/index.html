@@ -28,7 +28,7 @@
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto"> 
+        <ul class="navbar-nav mr-auto" ng-controller="UserCtrl"> 
                <li class="nav-item">
                    <a href="/" class="nav-link">Home</a>
                </li>
@@ -38,7 +38,7 @@
                <li class="nav-item">
                    <a href="/contact" class="nav-link">Contact Me</a>
                  </li> 
-                 <li class="nav-item">
+                 <li class="nav-item" ng-show="firebaseUser">
                     <a href="/add"  class="nav-link" data-toggle="modal" data-target="#newModal">Add Me</a>
                   </li> 
         </ul> 
@@ -54,10 +54,15 @@
               <a href="/login" class="nav-link">Login</a>
             </li>
           </ul>
-            <li class="nav-item" ng-show="firebaseUser">
-                <p>Hello, {{ firebaseUser.displayName }}</p>
-              <a href="" class="nav-link" ng-click="auth.$signOut()">Signout</a>
-            </li>
+          <ul class="navbar-nav" ng-show="firebaseUser">
+              <li class="nav-item" >
+              Hello, {{ firebaseUser.email }}
+              </li>
+              <li class="nav-item" >
+                <a href="" class="nav-link" ng-click="auth.$signOut()">Signout</a>
+              </li>
+          </ul>
+ 
         </ul>
     </div>
 </nav>

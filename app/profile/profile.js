@@ -19,11 +19,11 @@ angular.module('myApp.profile', ['ngRoute'])
 
    // ========= Adding User ============= //
 
-   $scope.users = $firebaseArray(ref.child("users").child("profile"));
+  
    // add new items to the array
    // the message is automatically added to our Firebase database!
-   $scope.addUser = function() {
-     console.log("Adding......")
+   $scope.addUser = function(id) {
+  $scope.users = $firebaseArray(ref.child("users/" + id));
      if($scope.username) {
       $scope.users.$add({
         name: $scope.name,
@@ -52,6 +52,7 @@ angular.module('myApp.profile', ['ngRoute'])
           url: $scope.facebook
         }
       }).then(function(userID) {
+        console.log("User created Successfully " + userID)
        $location.path("/")
      }, function(error) {
        console.log(error)
