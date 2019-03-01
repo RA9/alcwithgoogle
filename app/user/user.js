@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('myApp.view1', ['ngRoute'])
+angular.module('myApp.user', ['ngRoute'])
 
 .config(['$routeProvider', function($routeProvider) {
   $routeProvider.when('/login', {
@@ -16,20 +16,31 @@ angular.module('myApp.view1', ['ngRoute'])
 ])
 
 // and use it in our controller
-.controller("UserCtrl", ["$scope", "Auth",
-  function($scope, Auth) {
-    $scope.createUser = function() {
-      $scope.message = null;
-      $scope.error = null;
+.controller("UserCtrl", ["$scope", "Auth","$location",
+  function($scope, Auth,$location) {
+    
+     // any time auth state changes, add the user data to scope
+     $scope.auth = Auth;
+     $scope.auth.$onAuthStateChanged(function(firebaseUser) {
+       $scope.firebaseUser = firebaseUser;
+     })
+ 
 
-      // Create a new user
-      Auth.$createUserWithEmailAndPassword($scope.email, $scope.password)
-        .then(function(firebaseUser) {
-          $scope.message = "User created with uid: " + firebaseUser.uid;
-        }).catch(function(error) {
-          $scope.error = error;
+    
+    $scope.signIn = function(){
+        var username = $scope.email;
+        var password = $scope.password;
+    
+        Auth.$signInWithEmailAndPassword(username, password).then(function(firebaseUser){
+          console.log("User Login Successful" + firebaseUser.uid);
+          $location.path('/');
+        }).catch(function(error){
+            console.log(error)
+          $scope.errMsg = true;
+          $scope.errorMessage = error.message;
         });
-    };
+    }
+  
 
     $scope.deleteUser = function() {
       $scope.message = null;

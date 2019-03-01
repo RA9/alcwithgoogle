@@ -11,7 +11,7 @@ angular.module('myApp.view1', ['ngRoute'])
 
 
 
-.controller('ViewCtrl', ['$scope','Auth','$firebaseArray','$firebaseObject','CommonProp','$location',function($scope,Auth,$firebaseArray,$firebaseObject,CommonProp,$location) {
+.controller('ViewCtrl', ['$scope','$firebaseObject','CommonProp','$location',function($scope,$firebaseObject,CommonProp,$location) {
     
   $scope.username = CommonProp.getUser();
 
@@ -70,56 +70,6 @@ angular.module('myApp.view1', ['ngRoute'])
       })
     }
 
-   
-
-    // ======= User Authentication =======
-    $scope.createUser = function() {
-      $scope.message = null;
-      $scope.error = null;
-
-      // Create a new user
-      Auth.$createUserWithEmailAndPassword($scope.email, $scope.password)
-        .then(function(firebaseUser) {
-          $scope.message = "User created with uid: " + firebaseUser.uid;
-          $location.path('/');
-        }).catch(function(error) {
-          $scope.error = error;
-        });
-    };
-
-    $scope.signIn = function(){
-      var username = $scope.user.email;
-      var password = $scope.user.password;
   
-      Auth.$signInWithEmailAndPassword(username, password).then(function(){
-        console.log("User Login Successful");
-        CommonProp.setUser($scope.user.email);
-        $location.path('/');
-      }).catch(function(error){
-        $scope.errMsg = true;
-        $scope.errorMessage = error.message;
-      });
-  }
-
-  $scope.signOut = CommonProp.logoutUser();
-
-    $scope.deleteUser = function() {
-      $scope.message = null;
-      $scope.error = null;
-
-      // Delete the currently signed-in user
-      Auth.$deleteUser().then(function() {
-        $scope.message = "User deleted";
-      }).catch(function(error) {
-        $scope.error = error;
-      });
-    };
-
-    // any time auth state changes, add the user data to scope
-    $scope.auth = Auth;
-    $scope.auth.$onAuthStateChanged(function(firebaseUser) {
-      $scope.firebaseUser = firebaseUser;
-    })
-
     
 }]);

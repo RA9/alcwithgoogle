@@ -6,6 +6,7 @@ angular.module('myApp', [
   'firebase',
 	'myApp.view1',
 	'myApp.user',
+	'myApp.register',
 	'myApp.profile',
 	'myApp.about',
   'myApp.contact',
