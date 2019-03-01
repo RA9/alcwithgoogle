@@ -42,17 +42,20 @@
                     <a href="/add"  class="nav-link" data-toggle="modal" data-target="#newModal">Add Me</a>
                   </li> 
         </ul> 
-        <ul class="navbar-nav ml-auto">
+        <ul class="navbar-nav ml-auto" ng-controller="ViewCtrl">
             <form action="" class="form-inline my-2 my-lg-0">
                 <input type="search" ng-model="search" class="form-control mr-sm-2" placeholder="Search" aria-label="Search">
             </form>
-          <li class="nav-item">
+          <ul class="navbar-nav" ng-hide="firebaseUser">
+          <li class="nav-item" >
             <a href="/" class="nav-link" data-toggle="modal" data-target="#signUpModal">Register</a>
           </li>
           <li class="nav-item">
               <a href="/" class="nav-link" data-toggle="modal" data-target="#myModal">Login</a>
             </li>
-            <li class="nav-item">
+          </ul>
+            <li class="nav-item" ng-show="firebaseUser">
+                <p>Hello, {{ firebaseUser.displayName }}</p>
               <a href="/" class="nav-link" ng-click="signOut()">Signout</a>
             </li>
         </ul>

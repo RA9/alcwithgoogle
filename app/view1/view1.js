@@ -115,7 +115,11 @@ angular.module('myApp.view1', ['ngRoute'])
       });
     };
 
-    $scope.isChecked = $scope.username;
+    // any time auth state changes, add the user data to scope
+    $scope.auth = Auth;
+    $scope.auth.$onAuthStateChanged(function(firebaseUser) {
+      $scope.firebaseUser = firebaseUser;
+    })
 
     
 }]);

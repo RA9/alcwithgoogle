@@ -11,7 +11,7 @@ angular.module('myApp.profile', ['ngRoute'])
     
   $scope.username = CommonProp.getUser();
 
-    if($scope.username){
+    if(!$scope.username){
       $location.path('/add');
   }
 
