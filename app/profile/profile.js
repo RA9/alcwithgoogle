@@ -7,24 +7,29 @@ angular.module('myApp.profile', ['ngRoute'])
   });
 }])
 
-.controller('profileCtrl', ['$scope','Auth','$firebaseArray','CommonProp','$location',function($scope,Auth,$firebaseArray,CommonProp,$location) {
-    
-  $scope.username = CommonProp.getUser();
+.factory("Auth", ["$firebaseAuth",
+function($firebaseAuth) {
+  return $firebaseAuth();
+}
+])
 
-    if(!$scope.username){
-      $location.path('/add');
-  }
+.controller('profileCtrl', ['$scope','Auth','$firebaseArray','$location',function($scope,Auth,$firebaseArray,CommonProp,$location) {
+    
+  
+  $scope.auth =  Auth;
+  $scope.auth.$onAuthStateChanged(function(firebaseUser) {
+    $scope.firebaseUser = firebaseUser;
+  })
+
 
   const ref = firebase.database().ref();
 
    // ========= Adding User ============= //
-
-  
+   
    // add new items to the array
    // the message is automatically added to our Firebase database!
-   $scope.addUser = function(id) {
-  $scope.users = $firebaseArray(ref.child("users/" + id));
-     if($scope.username) {
+   $scope.addUser = function() {
+    $scope.users = $firebaseArray(ref.child("users/" + $scope.firebaseUser.uid).child("profile"));
       $scope.users.$add({
         name: $scope.name,
         img: $scope.img,
@@ -51,14 +56,13 @@ angular.module('myApp.profile', ['ngRoute'])
           title: "Facebook",
           url: $scope.facebook
         }
-      }).then(function(userID) {
-        console.log("User created Successfully " + userID)
-       $location.path("/")
+      }).then(function(users) {
+        console.log("User created Successfully " + users)
+       $location.path("#!")
      }, function(error) {
        console.log(error)
      })
    
-    }
     
   
   }

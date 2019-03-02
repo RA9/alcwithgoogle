@@ -11,14 +11,8 @@ angular.module('myApp.view1', ['ngRoute'])
 
 
 
-.controller('ViewCtrl', ['$scope','$firebaseObject','CommonProp','$location',function($scope,$firebaseObject,CommonProp,$location) {
+.controller('ViewCtrl', ['$scope','$firebaseObject','$location',function($scope,$firebaseObject,CommonProp,$location) {
     
-  $scope.username = CommonProp.getUser();
-
-    if($scope.username){
-      $location.path('/');
-  }
-
   const ref = firebase.database().ref();
     // download the data into a local object
     const syncObject = $firebaseObject(ref.child("users").child("profile"));
@@ -28,10 +22,8 @@ angular.module('myApp.view1', ['ngRoute'])
 
 
     $scope.editUser = function(id) {
-      if($scope.username) {
         const userID = ref.child("users").child("profile/" + id)
       $scope.editUserData = $firebaseObject(userID)
-      }
       console.log($scope.editUserData)
     }
 
