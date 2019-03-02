@@ -30,6 +30,7 @@ function($firebaseAuth) {
    // the message is automatically added to our Firebase database!
    $scope.addUser = function() {
     $scope.users = $firebaseArray(ref.child("users/" + $scope.firebaseUser.uid).child("profile"));
+    if(!$scope.users) {
       $scope.users.$add({
         name: $scope.name,
         img: $scope.img,
@@ -57,11 +58,33 @@ function($firebaseAuth) {
           url: $scope.facebook
         }
       }).then(function(users) {
+        $scope.name = "";
+        $scope.img = "";
+        $scope.description = "";
+        $scope.age = "";
+        $scope.occupation = "";
+        $scope.github = "";
+        $scope.twitter = "";
+        $scope.facebook = "";
+        $scope.linkedin = "";
         console.log("User created Successfully " + users)
        $location.path("#!")
      }, function(error) {
        console.log(error)
      })
+    } else {
+      $scope.name = "";
+        $scope.img = "";
+        $scope.description = "";
+        $scope.age = "";
+        $scope.occupation = "";
+        $scope.github = "";
+        $scope.twitter = "";
+        $scope.facebook = "";
+        $scope.linkedin = "";
+      alert("User profile already exist")
+    }
+      
    
     
   
