@@ -11,14 +11,14 @@ angular.module('myApp.view1', ['ngRoute'])
 
 
 
-.controller('ViewCtrl', ['$scope','$firebaseObject','$location',function($scope,$firebaseObject,CommonProp,$location) {
+.controller('ViewCtrl', ['$scope','$firebaseObject','$location',function($scope,$firebaseObject,$location) {
     
   const ref = firebase.database().ref();
     // download the data into a local object
-    const syncObject = $firebaseObject(ref.child("users").child("profile"));
+    const syncObject = $firebaseObject(ref.child("users"));
     console.log(syncObject)
     // synchronize the object with a three-way data binding
-    syncObject.$bindTo($scope, "profile");
+    syncObject.$bindTo($scope, "users");
 
 
     $scope.editUser = function(id) {

@@ -3,21 +3,19 @@
     <p class="lead">
         Below are the lists of the particpants or recipents of the Google Africa Reskilling
         Scholarship in partnership with Andela Learning Community and Pluralsight
-    </p>
-    <p>
         If you participated in the program feel free to add your credential or send me it using the contact page 
     </p>
     <div class="text-center">
-            <button type="submit" class="btn btn-success" >Learn More</button>
+            <button type="submit" class="btn btn-success">Learn More</button>
     </div>
 </header>
 
 <div class="row">
-<div class="col-md-4" ng-repeat="(id,user) in profile">
+<div class="col-md-4" ng-repeat="(id,user) in users">
         <div class="card text-center">
            <div></div>
             <div class=" text-center">
-                    <img ng-src="{{user.img}}" alt="{{user.name}}" class=" img-fluid rounded-circle" width="150">
+                    <img ng-src="{{user.id.img}}" alt="{{user.id.name}}" class=" img-fluid rounded-circle" width="150">
             </div>
            
             <div class="card-body" >
