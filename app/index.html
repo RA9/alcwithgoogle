@@ -55,7 +55,7 @@
           </ul>
           <ul class="navbar-nav" ng-show="firebaseUser">
               <li class="nav-item" >
-              Hello, {{ firebaseUser.email }}
+              <span class="nav-link text-dark">Hi,{{ firebaseUser.email }}</span> 
               </li>
               <li class="nav-item" >
                 <a href="" class="nav-link" ng-click="auth.$signOut()">Signout</a>

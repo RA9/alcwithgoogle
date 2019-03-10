@@ -22,7 +22,7 @@ function($firebaseAuth) {
   })
 
 
-  const ref = firebase.database().ref("users/" + $scope.firebaseUser.uid);
+  const ref = firebase.database().ref();
   
  
 
@@ -31,7 +31,7 @@ function($firebaseAuth) {
    // add new items to the array
    // the message is automatically added to our Firebase database!
    $scope.addUser = function() {
-    $scope.users = $firebaseArray(ref);
+    $scope.users = $firebaseArray(ref.child("users/" + $scope.firebaseUser.uid));
     if($scope.users === null) {
       $scope.users.$add({
         name: $scope.name,

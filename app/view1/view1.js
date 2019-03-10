@@ -11,8 +11,15 @@ angular.module('myApp.view1', ['ngRoute'])
 
 
 
-.controller('ViewCtrl', ['$scope','$firebaseObject','$location',function($scope,$firebaseObject,$location) {
+.controller('ViewCtrl', ['$scope','$firebaseObject','Auth',function($scope,$firebaseObject,Auth) {
     
+  // any time auth state changes, add the user data to scope
+  $scope.auth = Auth;
+  $scope.auth.$onAuthStateChanged(function(firebaseUser) {
+    $scope.firebaseUser = firebaseUser;
+    //console.log(firebaseUser.uid)
+  })
+
   const ref = firebase.database().ref();
     // download the data into a local object
     const syncObject = $firebaseObject(ref.child("users"));
@@ -22,13 +29,14 @@ angular.module('myApp.view1', ['ngRoute'])
 
 
     $scope.editUser = function(id) {
-        const userID = ref.child("users").child("profile/" + id)
+        const userID = ref.child("users/" + $scope.firebaseUser.uid).child(id);
       $scope.editUserData = $firebaseObject(userID)
       console.log($scope.editUserData)
     }
 
     $scope.saveUserData = function(id) {
-      var userID = ref.child("users").child("profile/" + id)
+      const userID = ref.child("users/" + $scope.firebaseUser.uid).child(id);
+      console.log(userID)
       userID.update({
         name: $scope.editUserData.name,
         img: $scope.editUserData.img,

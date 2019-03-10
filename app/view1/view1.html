@@ -2,8 +2,8 @@
     <h2 class="text-center">Meet Our Developers from ALCwithGoogle 3.1</h2>
     <p class="lead">
         Below are the lists of the particpants or recipents of the Google Africa Reskilling
-        Scholarship in partnership with Andela Learning Community and Pluralsight
-        If you participated in the program feel free to add your credential or send me it using the contact page 
+        Scholarship in partnership with Andela Learning Community and Pluralsight.
+        If you participated in the program feel free to add your credential by creating an account  or send me a message if you get stuck 
     </p>
     <div class="text-center">
             <button type="submit" class="btn btn-success">Learn More</button>
@@ -11,25 +11,25 @@
 </header>
 
 <div class="row">
-<div class="col-md-4" ng-repeat="(id,user) in users">
-        <div class="card text-center">
+<div class="col-md-4 col-sm-12" ng-repeat="user in users">
+        <div class="card text-center" ng-repeat="(id,profile) in user">
            <div></div>
             <div class=" text-center">
-                    <img ng-src="{{user.id.img}}" alt="{{user.id.name}}" class=" img-fluid rounded-circle" width="150">
+                    <img ng-src="{{profile.img}}" alt="{{profile.name}}" class=" img-fluid rounded-circle" width="150">
             </div>
            
             <div class="card-body" >
-                <h4 class="card-title">{{user.name}}</h4>
-                <p class="card-text ">{{user.description}}</p>
+                <h4 class="card-title">{{profile.name}} - <small>{{profile.occupation}}</small></h4>
+                <p class="card-text">{{profile.description}}</p>
                 <a href="/" class="btn btn-info">Learn more</a> 
-                <button type="submit" class="btn btn-primary" ng-show="isChecked" data-toggle="modal" data-target="#exampleModal" ng-click="editUser(id)">Edit</button>
+                <button type="submit" class="btn btn-primary" ng-controller="UserCtrl" ng-show="firebaseUser" data-toggle="modal" data-target="#exampleModal" ng-click="editUser(id)">Edit</button>
                 <br> <br>
                 <div class="card-footer">
                     <span>
-                        <a href="{{user.github.url}}" class="btn btn-primary btn-sm"><i class="{{user.github.icon}}"></i>{{user.github.title}}</a>
-                        <a href="{{user.facebook.url}}" class="btn btn-primary btn-sm"><i class="{{user.facebook.icon}}"></i>{{user.facebook.title}}</a><br><br>
-                        <a href="{{user.twitter.url}}" class="btn btn-primary btn-sm"><i class="{{user.twitter.icon}}"></i>{{user.twitter.title}}</a> 
-                        <a href="{{user.linkedin.url}}" class="btn btn-primary btn-sm"><i class="{{user.linkedin.icon}}"></i>{{user.linkedin.title}}</a>
+                        <a href="{{profile.github.url}}" class="btn btn-primary btn-sm"><i class="{{profile.github.icon}}"></i> {{profile.github.title}}</a>
+                        <a href="{{profile.facebook.url}}" class="btn btn-primary btn-sm"><i class="{{profile.facebook.icon}}"></i> {{profile.facebook.title}}</a><br><br>
+                        <a href="{{profile.twitter.url}}" class="btn btn-primary btn-sm"><i class="{{profile.twitter.icon}}"></i> {{profile.twitter.title}}</a> 
+                        <a href="{{profile.linkedin.url}}" class="btn btn-primary btn-sm"><i class="{{profile.linkedin.icon}}"></i> {{profile.linkedin.title}}</a>
                     </span>
                 </div>
             </div>
@@ -39,7 +39,7 @@
 
 
 
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" ng-repeat="user in profile">
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -53,7 +53,7 @@
             <div class="form-row">
                     <div class="form-group col-md-6">
                             <label for="">Name:</label>
-                            <input ng-model="editUserData.name" type="text" class="form-control" placeholder="Enter your name">                                  
+                            <input ng-model="editUserData.name"  type="text" class="form-control" placeholder="Enter your name">                                  
                     </div>
                     <div class="form-group col-md-6">
                             <label for="">Age:</label>
@@ -66,7 +66,7 @@
             </div>  
             <div class="form-group">
                     <label for="">Occupation:</label>
-                    <input ng-model="editUserData.occupation" type="text" class="form-control" placeholder="Enter your fullname">
+                    <input ng-model="editUserData.occupation" type="text" class="form-control" placeholder="Occupation">
             </div>
             <div class="form-group">
                             <label for="">Image:</label>
@@ -85,11 +85,11 @@
             <div class="form-row">
                     <div class="form-group col-md-6">
                             <label for=""><i class="fa fa-twitter"></i> Twitter:</label>
-                            <input ng-model="editUserData.twitter.url" type="text" class="form-control" placeholder="Enter your Twitter address">
+                            <input ng-model="editUserData.twitter.url" type="text" class="form-control" placeholder="Enter your Twitter address" value="{{user.twitter.url}}">
                     </div>  
                     <div class="form-group col-md-6">
                             <label for=""><i class="fa fa-facebook"></i> Facebook:</label>
-                            <input ng-model="editUserData.facebook.url" type="text" class="form-control" placeholder="Enter your Facebook address">
+                            <input ng-model="editUserData.facebook.url" type="text" class="form-control" placeholder="Enter your Facebook address" value="{{user.facebook.url}}">
                     </div> 
             </div>
         </form>

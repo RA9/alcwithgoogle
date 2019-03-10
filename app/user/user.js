@@ -33,7 +33,7 @@ angular.module('myApp.user', ['ngRoute'])
         var password = $scope.password;
     
         Auth.$signInWithEmailAndPassword(username, password).then(function(firebaseUser){
-          console.log("User Login Successful" + $scope.firebaseUser.uid);
+          console.log("User Login Successful " + $scope.firebaseUser.uid);
           $location.path('/');
         }).catch(function(error){
             console.log(error)
